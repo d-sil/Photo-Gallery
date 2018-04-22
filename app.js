@@ -35,17 +35,25 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", function(req, res){
-    res.render("landing");
+    Picture.find({}, function(err, allPictures) {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render("landing", {pictures: allPictures});     
+        }
+    });
 });
 
 app.get("/new", function(req, res){
    res.render("new"); 
 });
 
-app.post("/new", upload.single("image"), function(req, res) {
+app.post("/", upload.single("image"), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
-        req.body.picture.image = result.secure_url;
-        Picture.create(req.body.picture, function(err, picture) {
+        var image = req.body.image;
+        image = result.secure_url;
+        var newPicture = {image: image}
+        Picture.create(newPicture, function(err, picture) {
         if (err) { 
             console.log(err);
         }
