@@ -35,12 +35,21 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", function(req, res){
-    Picture.find({}, function(err, allPictures) {
-        if(err) {
-            console.log(err);
-        } else {
-            res.render("landing", {pictures: allPictures});     
-        }
+    var perPage = 9;
+    var pageQuery = parseInt(req.query.page);
+    var pageNumber = pageQuery ? pageQuery : 1;
+    Picture.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allPictures) {
+        Picture.count().exec(function (err, count) {
+            if(err) {
+                console.log(err);
+            } else {
+                res.render("landing", {
+                    pictures: allPictures,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage)
+                });     
+            }
+        });
     });
 });
 
