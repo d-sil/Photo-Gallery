@@ -4,7 +4,6 @@ var express        = require("express"),
     app            = express(),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
-    cookieParser   = require("cookie-parser"),
     Picture        = require("./models/picture");
     
 var multer = require("multer");
@@ -20,7 +19,7 @@ var imageFilter = function (req, file, cb) {
     }
     cb(null, true);
 };
-var upload = multer({ storage: storage, fileFilter: imageFilter})
+var upload = multer({ storage: storage, fileFilter: imageFilter});
 
 var cloudinary = require("cloudinary");
 cloudinary.config({ 
@@ -29,16 +28,21 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-mongoose.connect("mongodb://localhost/wedding_pics");    
+var url = process.env.DATABASEURL || "mongodb://localhost/wedding_pics";
+mongoose.connect(url); 
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", function(req, res){
-    var perPage = 9;
+    var perPage = 48;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
     Picture.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allPictures) {
+        if(err) {
+            console.log(err);
+        }
         Picture.count().exec(function (err, count) {
             if(err) {
                 console.log(err);
@@ -61,7 +65,7 @@ app.post("/", upload.single("image"), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
         var image = req.body.image;
         image = result.secure_url;
-        var newPicture = {image: image}
+        var newPicture = {image: image};
         Picture.create(newPicture, function(err, picture) {
         if (err) { 
             console.log(err);
