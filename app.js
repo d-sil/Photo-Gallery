@@ -36,7 +36,7 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", function(req, res){
-    var perPage = 48;
+    var perPage = 21;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
     Picture.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allPictures) {
