@@ -22,3 +22,22 @@ p {
 body {
 	background-color: #e2edff;
 }
+
+.pagination li.active a {
+  background-color: #b1b9c6;
+  color: white;
+  border-color: #b1b9c6;
+}
+
+.pagination li a {
+  color: #858c96;
+}
+
+.pagination li:hover:not(.active) a {
+  color: black;
+}
+
+.pagination li:hover.active a {
+  background-color: #b1b9c6;
+  border-color: #b1b9c6;
+}
