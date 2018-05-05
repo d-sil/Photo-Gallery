@@ -22,9 +22,11 @@
     <% include partials/pagination %>
     
      <% pictures.forEach(function(picture){ %>
-        <a href="<%= picture.anchor %>">
-            <img src="<%= picture.image %>">
-        </a> 
+        <div class="col-lg-4 col-sm-6">
+            <a href="<%= picture.anchor %>">
+                <img src="<%= picture.image %>">
+            </a>
+        </div>
      <% }); %>
          
      <% include partials/pagination %>
