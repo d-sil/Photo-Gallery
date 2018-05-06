@@ -43,3 +43,8 @@ body {
   background-color: #b1b9c6;
   border-color: #b1b9c6;
 }
+
+.centered {
+	margin: auto;
+	width: 55%;
+}
