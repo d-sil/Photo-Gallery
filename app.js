@@ -65,7 +65,8 @@ app.post("/", upload.single("image"), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
         var image = req.body.image;
         image = result.secure_url;
-        var newPicture = {image: image};
+        var anchor = image;
+        var newPicture = {image: image, anchor: image};
         Picture.create(newPicture, function(err, picture) {
         if (err) { 
             console.log(err);
