@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Wedding</title>
 	<link href='https://fonts.googleapis.com/css?family=Raleway:400,800' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
@@ -23,9 +24,14 @@
     
      <% pictures.forEach(function(picture){ %>
         <div class="col-lg-4 col-sm-6">
-            <a target="_blank" href="<%= picture.anchor %>">
-                <img src="<%= picture.image %>">
-            </a>
+            <div class="gallery">
+                <a target="_blank" href="<%= picture.anchor %>">
+                    <img src="<%= picture.image %>">
+                </a>
+                <a target="_blank" href="<%= picture.anchor %>">
+                    <i class="fa fa-camera"></i>
+                </a>
+            </div>
         </div>
      <% }); %>
          

@@ -7,6 +7,11 @@ img {
   	padding-bottom: 20px;
 }
 
+.gallery:hover img {
+	filter: grayscale(100%);
+	transition: all 0.4s ease-in-out;
+}
+
 p {
 	font-family: Raleway;
 	margin-left: auto;
@@ -23,6 +28,27 @@ p {
 
 body {
 	background-color: #e2edff;
+}
+
+.gallery i {
+	position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  font-size: 34px;
+  text-align: center;
+  color: #62a1d1;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background: #ffffff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 300ms 0ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.gallery:hover i {
+	transform: translate(-50%, -50%) scale(0.75);
+  transition: transform 200ms 100ms cubic-bezier(0.6, -0.28, 0.735, 0.045);
 }
 
 .pagination li.active a {
