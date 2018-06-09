@@ -39,6 +39,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.get("/", function(req, res){
+   res.render("index"); 
+});
+
+app.get("/landing", function(req, res){
     var perPage = 39;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
@@ -64,7 +68,7 @@ app.get("/new", function(req, res){
    res.render("new"); 
 });
 
-app.post("/", upload.single("image"), function(req, res) {
+app.post("/landing", upload.single("image"), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
         var image = req.body.image;
         image = result.secure_url;
@@ -74,7 +78,7 @@ app.post("/", upload.single("image"), function(req, res) {
         if (err) { 
             console.log(err);
         }
-        res.redirect("/");
+        res.redirect("/landing");
         });
     });
 });
