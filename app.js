@@ -30,7 +30,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-var url = process.env.DATABASEURL || "mongodb://localhost/wedding_pics";
+var url = process.env.DATABASEURL
 mongoose.connect(url); 
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -43,7 +43,7 @@ app.get("/", function(req, res){
 });
 
 app.get("/landing", function(req, res){
-    var perPage = 39;
+    var perPage = 15;
     var pageQuery = parseInt(req.query.page);
     var pageNumber = pageQuery ? pageQuery : 1;
     Picture.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allPictures) {
@@ -68,7 +68,7 @@ app.get("/new", function(req, res){
    res.render("new"); 
 });
 
-app.post("/landing", upload.single("image"), function(req, res) {
+app.post("/", upload.single("image"), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
         var image = req.body.image;
         image = result.secure_url;
@@ -84,5 +84,5 @@ app.post("/landing", upload.single("image"), function(req, res) {
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
-   console.log("The Wedding server has started!"); 
+   console.log("The Photo Collection server has started!"); 
 });

@@ -12,22 +12,29 @@ img {
 	transition: all 0.4s ease-in-out;
 }
 
-p {
-	font-family: Raleway;
-	margin-left: auto;
-	margin-right: auto;
-	font-size: 23px;
-	font-weight: 500;
-	text-transform: uppercase;
-	border-bottom: 2px solid #b1b9c6;
-	width: 33%;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	text-align: center;
+.intro {
+  padding-top: 20px;
+  padding-bottom: 90px;
 }
 
-body {
-	background-color: #e2edff;
+p {
+	font-family: 'Inconsolata', monospace;
+  font-family: 'Dancing Script', cursive;
+	margin-left: auto;
+	margin-right: auto;
+	font-weight: 500;
+	width: 33%;
+	text-align: center;
+	margin-bottom: 0;
+	color: #797e84;
+}
+
+.big {
+  font-size: 45px;
+}
+
+.small {
+  font-size: 20px;
 }
 
 .gallery i {

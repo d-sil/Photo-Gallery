@@ -1,5 +1,5 @@
 body {
-	background: url(https://res.cloudinary.com/davidandkristle/image/upload/q_50/v1524528638/icavt0wfnthgilafybss.jpg);
+	background: url(https://res.cloudinary.com/davidandkristle/image/upload/q_50/v1528752631/ablisnik0rjwjsheeowd.jpg);
 	background-size: cover;
 	background-position: center;
 	font-family: 'Lato', sans-serif;
@@ -31,4 +31,12 @@ hr {
 	width: 400px;
 	border-top: 1px solid #f8f8f8;
 	border-bottom: 1px solid rgba (0,0,0,0.2);
+}
+
+.fa {
+	padding-left: 5px;
+}
+
+span {
+	padding-right: 5px;
 }
