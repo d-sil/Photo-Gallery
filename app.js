@@ -84,5 +84,5 @@ app.post("/", upload.single("image"), function(req, res) {
 });
 
 app.listen(process.env.PORT, process.env.IP, function() {
-   console.log("The Photo Collection server has started!"); 
+   console.log("The Photo Gallery server has started!"); 
 });
